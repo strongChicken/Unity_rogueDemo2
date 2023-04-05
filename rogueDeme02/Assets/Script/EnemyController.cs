@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
@@ -9,9 +9,13 @@ public class EnemyController : MonoBehaviour
     public int attack = 2;
     public float speed = 5.0f;
 
-    private bool IsDamaging;
+    private float timer = 0f;
+
+    private bool IsDamaging = false;
     private NavMeshAgent navMeshAgent;
     private BoxCollider2D boxCollider;
+
+    private PlayerController player = new PlayerController();
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +27,7 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -31,8 +35,8 @@ public class EnemyController : MonoBehaviour
         if(collision.tag == "Player")
         {
             IsDamaging = true;
-            Debug.Log("IsDamaging " + IsDamaging);
-            StartCoroutine(ApplyDamage());
+            DamageCheck();
+            //Debug.Log("IsDamaging " + IsDamaging);
         }
     }
 
@@ -45,14 +49,19 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-
-    IEnumerator ApplyDamage()
+    private void DamageCheck()
     {
-        while (IsDamaging)
+        if (IsDamaging)
         {
-            yield return new WaitForSeconds(1.0f);
-            PlayerController player = FindObjectOfType<PlayerController>();
-            player.Injured(attack);
+            timer += Time.deltaTime;
+            Debug.Log("timer "+ timer);
+
+            if (timer >= 1.0f)
+            {
+                Debug.Log("造成1次伤害");
+                player.Injured(attack);
+                timer = 0f;
+            }
         }
     }
 }

@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rigidbody2d;
     private Animator animator;
 
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -51,4 +52,6 @@ public class PlayerController : MonoBehaviour
         health -= amount;
         Debug.Log("当前生命值" + health);
     }
+
+
 }
