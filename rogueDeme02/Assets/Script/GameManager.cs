@@ -9,6 +9,14 @@ public class GameManager : MonoBehaviour
     private Vector2 posit = new Vector2(-5.05f, 4.12f);
 
     private GameObject enemyPrefab;
+
+    [SerializeField] private string playerRes;
+
+    #region Runtime
+
+    private PlayerController playerController;
+
+    #endregion
     private void Awake()
     {
         enemyPrefab = Resources.Load<GameObject>("prefabs/Enemy/Enemy01");
@@ -17,13 +25,24 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SpawnPlayer();
+        SpawnEnemy(playerController);
+    }
+
+    void SpawnPlayer()
+    {
+        var playerPrefab = Resources.Load<PlayerController>(playerRes);
+        playerController = Instantiate(playerPrefab);
+    }
+
+    void SpawnEnemy(PlayerController playerController)
+    {
         GameObject parentObj = new GameObject("enemies");
-        for (int i = 0; i <= 5; i++)
+        for (int i = 0; i < 1; i++)
         {
             // TODO 为什么prefabs的transform有特殊值
             var enemy = FactoryEnemey.CreateEnemy("Enemy01", new Vector2(-5.05f, 4.12f), transform.rotation, parentObj.transform);
-            // TODO 处理enemy
-            // GameObject.Instantiate(enemyPrefab, new Vector2(-5.05f, 4.12f), transform.rotation).transform.SetParent(parentobj.transform);
+            enemy.SetPlayerTarget(playerController);
         }
     }
 

@@ -15,14 +15,27 @@ public class EnemyController : MonoBehaviour
     private NavMeshAgent navMeshAgent;
     private BoxCollider2D boxCollider;
 
-    private PlayerController player = new PlayerController(); // TODO 不能new一个Mono
 
+    #region Runtime
     private EnemyBase _enemyBase;
+    private CharactorAI aiController;
+    private PlayerController player; // TODO 不能new一个Mono
+    #endregion
     
     // call Init before use, 把Enemy的属性存起来备用
     public void Init(EnemyBase enemyBase)
     {
         _enemyBase = enemyBase;
+        aiController = GetComponent<CharactorAI>();
+    }
+
+    public void SetTarget(PlayerController playerController)
+    {
+        player = playerController;
+        if (aiController != null)
+        {
+            aiController.SetNevTarget(playerController.transform);
+        }
     }
 
     // Start is called before the first frame update
@@ -67,7 +80,10 @@ public class EnemyController : MonoBehaviour
             if (timer >= 1.0f)
             {
                 Debug.Log("造成1次伤害");
-                player.Injured(attack);
+                if (player != null)
+                {
+                    player.Injured(attack);
+                }
                 timer = 0f;
             }
         }

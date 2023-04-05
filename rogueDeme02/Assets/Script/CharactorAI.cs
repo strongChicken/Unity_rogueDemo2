@@ -8,21 +8,29 @@ public class CharactorAI : MonoBehaviour
     private NavMeshAgent meshAgent;
     private Transform targetPos;
 
+    public void SetNevTarget(Transform target)
+    {
+        targetPos = target;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         meshAgent = gameObject.GetComponent<NavMeshAgent>();
-        targetPos = GameObject.Find("Player").GetComponent<Transform>();
+        // targetPos = GameObject.Find("Player").GetComponent<Transform>();
 
         meshAgent.updateRotation = false;
         meshAgent.updateUpAxis = false;
-
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (targetPos == null) // 如果没有玩家, 不寻路
+        {
+            return;
+        }
+
         SetDestination(targetPos.position);
     }
 
