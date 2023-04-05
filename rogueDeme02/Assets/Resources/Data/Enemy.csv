@@ -1,0 +1,4 @@
+,key,,,,,,
+id,enemyID,name,type,speed,attack,defend,skillID
+1,1001,normalEnemy,1,5,1,0,
+2,2001,BossEnemy,2,3,10,0,
