@@ -14,5 +14,10 @@ public class EnemyBase
     internal EnemyBase(GameObject go)
     {
         gameObject = go;
+        if (!go.TryGetComponent<EnemyController>(out var enemyController))
+        {
+            enemyController = go.AddComponent<EnemyController>();
+        }
+        enemyController.Init(this);
     }
 }

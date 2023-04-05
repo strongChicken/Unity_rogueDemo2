@@ -5,9 +5,9 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
-    public int health = 10;
-    public int attack = 2;
-    public float speed = 5.0f;
+    public int health => _enemyBase.health;
+    public int attack => _enemyBase.attack;
+    public float speed => _enemyBase.speed;
 
     private float timer = 0f;
 
@@ -15,7 +15,15 @@ public class EnemyController : MonoBehaviour
     private NavMeshAgent navMeshAgent;
     private BoxCollider2D boxCollider;
 
-    private PlayerController player = new PlayerController();
+    private PlayerController player = new PlayerController(); // TODO 不能new一个Mono
+
+    private EnemyBase _enemyBase;
+    
+    // call Init before use, 把Enemy的属性存起来备用
+    public void Init(EnemyBase enemyBase)
+    {
+        _enemyBase = enemyBase;
+    }
 
     // Start is called before the first frame update
     void Start()
