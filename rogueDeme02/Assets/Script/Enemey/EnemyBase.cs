@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
 
 public class EnemyBase
@@ -12,8 +9,10 @@ public class EnemyBase
     public int defend = 0;
     public int critical = 0;
 
-    public virtual void Build(Vector2 position, Quaternion ratation)
-    {
+    public GameObject gameObject { get; }
 
+    internal EnemyBase(GameObject go)
+    {
+        gameObject = go;
     }
 }

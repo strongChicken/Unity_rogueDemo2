@@ -4,20 +4,16 @@ using UnityEngine;
 
 public class FactoryEnemey
 {
-    EnemyBase enemy = null;
-    NormalEnemy  normalEnemy = new NormalEnemy();
-    BossEnemy bossEnemy = new BossEnemy();
-
-
-    public EnemyBase CreatEnemy(string key, Vector2 position, Quaternion ratation)
+    public EnemyBase CreatEnemy(string key, Vector2 position, Quaternion rotation)
     {
+        EnemyBase enemy = null;
         switch (key)
         {
             case ("Enemy01"):
-                enemy.Build(position, ratation);
+                enemy = NormalEnemy.Build(position, rotation);
                 break;
             case ("Enemy02"):
-                enemy.Build(position, ratation);
+                enemy = NormalEnemy.Build(position, rotation);
                 break;
         }
         return enemy;

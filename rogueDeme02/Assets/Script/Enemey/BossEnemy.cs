@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class BossEnemy : EnemyBase
 {
-    public override void Build(Vector2 position, Quaternion ratation)
+
+    internal BossEnemy(GameObject go) : base(go)
     {
-        Object.Instantiate(Resources.Load("Boss") as GameObject);
+        
+    }
+    public static BossEnemy Build(Vector2 position, Quaternion rotation)
+    {
+        var go = Object.Instantiate(Resources.Load("Boss") as GameObject);
+        return new BossEnemy(go);
     }
 }
