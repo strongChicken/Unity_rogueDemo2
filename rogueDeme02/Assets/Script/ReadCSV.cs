@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ReadCSV
 {
-    // 负责解析指定的CSV表格和KEY位置，将结果和位置返回；
+    // 璐熻矗瑙ｆ瀽鎸囧畾鐨凜SV琛ㄦ牸鍜孠EY浣嶇疆锛屽皢缁撴灉鍜屼綅缃繑鍥烇紱
     private int keyCol;
     private string[] dataList;
     private int index;
@@ -12,12 +12,12 @@ public class ReadCSV
     public (string[], int) GetCsvData(string fieldName)
     {
         Debug.Log("fieldName " + fieldName);
-        TextAsset csvData = Resources.Load<TextAsset>(fieldName);   // TODO csvData是null
+        TextAsset csvData = Resources.Load<TextAsset>(fieldName);   // TODO csvData鏄痭ull
         Debug.Log("csvData " + csvData);
         string[] data = csvData.text.Split('\n');
         string[] keyRow = data[0].Split(',');
 
-        // 获取key所在的列数
+        // 鑾峰彇key鎵�鍦ㄧ殑鍒楁暟
         for (int i = 0; i < data[0].Length - 1; i++)
         {
             if (keyRow[i] == "key")

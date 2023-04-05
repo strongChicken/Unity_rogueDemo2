@@ -7,13 +7,13 @@ public class DataManager
     private ReadCSV readCSV = new ReadCSV();
     private (string[], int) enemyData;
 
-    // Æô¶¯Ê±ËùĞè¼ÓÔØµÄÊı¾İ
+    // å¯åŠ¨æ—¶æ‰€éœ€åŠ è½½çš„æ•°æ®
     public void ReadAllCSV()
     {
         enemyData = readCSV.GetCsvData("Enemey");
     }
 
-    // ·µ»ØÖ¸¶¨Êı¾İ
+    // è¿”å›æŒ‡å®šæ•°æ®
     public (string[], int) GetEnemyData()
     {
         return enemyData;

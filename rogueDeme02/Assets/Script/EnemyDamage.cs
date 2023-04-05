@@ -19,12 +19,12 @@ public class EnemyDamage : MonoBehaviour
         
     }
 
-    // Åö×²ÉËº¦
+    // ç¢°æ’žä¼¤å®³
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "play")
         {
-            Debug.Log("Åöµ½Íæ¼Ò");
+            Debug.Log("ç¢°åˆ°çŽ©å®¶");
         }
     }
 }

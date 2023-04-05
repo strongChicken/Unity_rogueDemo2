@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
         GameObject parentobj = new GameObject("enemies");
         for (int i = 0; i <= 5; i++)
         {
-            // TODO ÎªÊ²Ã´prefabsµÄtransformÓÐÌØÊâÖµ
+            // TODO ä¸ºä»€ä¹ˆprefabsçš„transformæœ‰ç‰¹æ®Šå€¼
             GameObject.Instantiate((Resources.Load("prefabs/Enemy/Enemy01") as GameObject), new Vector2(-5.05f, 4.12f), transform.rotation).transform.SetParent(parentobj.transform);
         }
     }

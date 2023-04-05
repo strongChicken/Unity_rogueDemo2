@@ -10,7 +10,7 @@ public class NormalEnemy : EnemyBase
     {
         GameObject parentobj = new GameObject("normalEnemies");
         GameObject.Instantiate(((Resources.Load("prefabs/Enemy/Enemy01") as GameObject)), position, ratation).transform.SetParent(parentobj.transform);
-        // TODO Éú³É×ø±ê
+        // TODO ç”Ÿæˆåæ ‡
     }
 
 }

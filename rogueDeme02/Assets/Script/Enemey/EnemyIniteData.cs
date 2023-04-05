@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyIniteData
 {
-    // 负责通过ID返回指定数据stirng[]
+    // 璐熻矗閫氳繃ID杩斿洖鎸囧畾鏁版嵁stirng[]
 
     private DataManager data = new DataManager();
     private string[] dataList;
@@ -15,7 +15,7 @@ public class EnemyIniteData
     private BossEnemy bossEnemy;
 
 
-    // 通过怪物ID获取数据
+    // 閫氳繃鎬墿ID鑾峰彇鏁版嵁
     public void EnemyIniteAttributes(int enmeyID)
     {
         (dataList, keyCol) = data.GetEnemyData();
@@ -27,7 +27,7 @@ public class EnemyIniteData
                 switch (dataRow[3])
                 {
                     case ("1"):
-                        // TODO 把获取的数据给到enemy对象
+                        // TODO 鎶婅幏鍙栫殑鏁版嵁缁欏埌enemy瀵硅薄
                         break;
                 }
             }
