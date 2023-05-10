@@ -11,32 +11,15 @@ public class EnemyController : MonoBehaviour
 
     private float timer = 0f;
 
-    private bool IsDamaging = false;
-    private NavMeshAgent navMeshAgent;
-    private BoxCollider2D boxCollider;
-
-
     #region Runtime
     private EnemyBase _enemyBase;
     private CharactorAI aiController;
-    private PlayerController player; // TODO 不能new一个Mono
+    private PlayerController player;
     #endregion
-    
-    // call Init before use, 把Enemy的属性存起来备用
-    public void Init(EnemyBase enemyBase)
-    {
-        _enemyBase = enemyBase;
-        aiController = GetComponent<CharactorAI>();
-    }
 
-    public void SetTarget(PlayerController playerController)
-    {
-        player = playerController;
-        if (aiController != null)
-        {
-            aiController.SetNevTarget(playerController.transform);
-        }
-    }
+    private bool IsDamaging = false;
+    private NavMeshAgent navMeshAgent;
+    private BoxCollider2D boxCollider;
 
     // Start is called before the first frame update
     void Start()
@@ -51,13 +34,31 @@ public class EnemyController : MonoBehaviour
 
     }
 
+    public void Init(EnemyBase enemyBase)
+    {
+        _enemyBase = enemyBase; // TODO _enemyBase干嘛用的
+        aiController = GetComponent<CharactorAI>(); // TODO aiController干嘛用的
+    }
+
+    // 设置敌人的Nav目标
+    // 1. 获取playerController
+    // 2. 将player的transform传给敌人身上的Nav
+    public void SetTarget(PlayerController playerController)
+    {
+        player = playerController;
+        if (player != null)
+        {
+            aiController.setNavTarget(player.transform);
+            Debug.Log("setNavTarget is ok");
+        }
+        Debug.Log("====SetTarget is null====");
+    }
     private void OnTriggerStay2D(Collider2D collision)
     {
         if(collision.tag == "Player")
         {
             IsDamaging = true;
             DamageCheck();
-            //Debug.Log("IsDamaging " + IsDamaging);
         }
     }
 
@@ -66,7 +67,6 @@ public class EnemyController : MonoBehaviour
         if (collision.tag == "Player")
         {
             IsDamaging = false;
-            Debug.Log("IsDamaging "+IsDamaging);
         }
     }
 
@@ -75,17 +75,16 @@ public class EnemyController : MonoBehaviour
         if (IsDamaging)
         {
             timer += Time.deltaTime;
-            Debug.Log("timer "+ timer);
-
             if (timer >= 1.0f)
             {
-                Debug.Log("造成1次伤害");
                 if (player != null)
                 {
+                    Debug.Log("造成1次伤害");
                     player.Injured(attack);
+                    timer = 0f;
                 }
-                timer = 0f;
             }
         }
     }
+
 }

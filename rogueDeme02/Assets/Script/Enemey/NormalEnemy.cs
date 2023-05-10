@@ -1,26 +1,26 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
-using JetBrains.Annotations;
 using UnityEngine;
 
 public class NormalEnemy : EnemyBase
 {
-    private Vector2 posit = new Vector2(-5.05f, 4.12f);
+    internal NormalEnemy(GameObject go): base(go) { }
 
-    internal NormalEnemy(GameObject go) : base(go)
+    // "Transform parent = null" 参数默认值null
+    public static NormalEnemy Build(Vector2 position, Quaternion ratation, Transform parent = null)
     {
-    }
+        //GameObject parentobj = new GameObject("normalEnemies");
+        var go = GameObject.Instantiate(((Resources.Load("prefabs/Enemy/Enemy01") as GameObject)), position, ratation);
+        //go.transform.SetParent(parentobj.transform);
 
-    public static NormalEnemy Build(Vector2 position, Quaternion rotation, [CanBeNull] Transform parent = null)
-    {
-        var go = Object.Instantiate(((Resources.Load("prefabs/Enemy/Enemy01") as GameObject)), position, rotation);
-        if (parent != null)
+        if(parent != null)
         {
-            go.transform.SetParent(parent, true);
+            go.transform.SetParent(parent); // TODO 父物体是什么
         }
-        // TODO 鐢熸垚鍧愭爣
+
+        // TODO 生成坐标
 
         return new NormalEnemy(go);
     }
-
 }

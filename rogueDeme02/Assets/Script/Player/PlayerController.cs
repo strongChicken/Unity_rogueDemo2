@@ -43,14 +43,14 @@ public class PlayerController : MonoBehaviour
     {
         if (health <= 0)
         {
-            Debug.Log("æ¸¸æˆç»“æŸ");
+            Debug.Log("ÓÎÏ·½áÊø");
         }
     }
 
     public void Injured(int amount)
     {
         health -= amount;
-        Debug.Log("å½“å‰ç”Ÿå‘½å€¼" + health);
+        Debug.Log("µ±Ç°ÉúÃüÖµ" + health);
     }
 
 
