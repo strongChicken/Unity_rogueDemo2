@@ -18,11 +18,11 @@ public class EnemyBase
     internal EnemyBase(GameObject go)
     {
         gameObject = go;
-        // TryGetComponent<> ÓÃÀ´²éÕÒ¡°EnemyController¡±×é¼þ£¬¸ù¾Ý½á¹û·µ»ØboolÖµ
-        // (out var enemyController) ÊÇTryGetComponent<>·µ»ØtrueÊ±£¬½«×é¼þ¸³Öµ¸øenemyController
-        if (!go.TryGetComponent<EnemyController>(out var enemyController))
+        // TryGetComponent<> ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò¡ï¿½EnemyControllerï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½boolÖµ
+        // (out var enemyController) ï¿½ï¿½TryGetComponent<>ï¿½ï¿½ï¿½ï¿½trueÊ±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½enemyController
+        if (!go.TryGetComponent<EnemyController>(out enemyController))
         {
-            // false enemyController add EnemyController×é¼þ
+            // false enemyController add EnemyControllerï¿½ï¿½ï¿½
             enemyController = go.AddComponent<EnemyController>();
             Debug.Log("enemyController" + enemyController);
         }
