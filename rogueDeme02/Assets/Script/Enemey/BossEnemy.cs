@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class BossEnemy : EnemyBase
 {
+    internal BossEnemy(GameObject go):base(go) { }
 
-    internal BossEnemy(GameObject go) : base(go)
-    {
-        
-    }
-    public static BossEnemy Build(Vector2 position, Quaternion rotation)
+    public static BossEnemy Build(Vector2 position, Quaternion ratation, Transform parent = null)
     {
         var go = Object.Instantiate(Resources.Load("Boss") as GameObject);
+
         return new BossEnemy(go);
     }
 }

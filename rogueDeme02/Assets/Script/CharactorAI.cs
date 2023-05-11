@@ -8,36 +8,37 @@ public class CharactorAI : MonoBehaviour
     private NavMeshAgent meshAgent;
     private Transform targetPos;
 
-    public void SetNevTarget(Transform target)
-    {
-        targetPos = target;
-    }
 
     // Start is called before the first frame update
     void Start()
     {
         meshAgent = gameObject.GetComponent<NavMeshAgent>();
-        // targetPos = GameObject.Find("Player").GetComponent<Transform>();
 
         meshAgent.updateRotation = false;
         meshAgent.updateUpAxis = false;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (targetPos == null) // å¦‚æœæ²¡æœ‰ç©å®¶, ä¸å¯»è·¯
+        if (targetPos == null)
         {
             return;
         }
-
         SetDestination(targetPos.position);
     }
 
+    // ¾ÀÕıNav×é¼şÎÊÌâ
     private void SetDestination(Vector3 pos)
     {
         float agentOffset = 0.001f;
         Vector3 agentPos = (Vector3)(agentOffset * Random.insideUnitCircle) + pos;
         meshAgent.SetDestination(agentPos);
+    }
+
+    public void setNavTarget(Transform target)
+    {
+        targetPos = target;
     }
 }

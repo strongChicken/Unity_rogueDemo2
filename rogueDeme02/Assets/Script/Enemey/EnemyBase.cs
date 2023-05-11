@@ -1,3 +1,6 @@
+using System.Collections;
+using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class EnemyBase
@@ -10,23 +13,25 @@ public class EnemyBase
     public int critical = 0;
 
     public GameObject gameObject { get; }
-    private EnemyController controller;
+    private EnemyController enemyController;
 
     internal EnemyBase(GameObject go)
     {
         gameObject = go;
+        // TryGetComponent<> ÓÃÀ´²éÕÒ¡°EnemyController¡±×é¼ş£¬¸ù¾İ½á¹û·µ»ØboolÖµ
+        // (out var enemyController) ÊÇTryGetComponent<>·µ»ØtrueÊ±£¬½«×é¼ş¸³Öµ¸øenemyController
         if (!go.TryGetComponent<EnemyController>(out var enemyController))
         {
+            // false enemyController add EnemyController×é¼ş
             enemyController = go.AddComponent<EnemyController>();
+            Debug.Log("enemyController" + enemyController);
         }
-
-        controller = enemyController;
         enemyController.Init(this);
     }
 
-    // åªç”¨äºDemo, è®¾å®šç¢°æ’æ—¶, ç›®æ ‡æ˜¯è°; æˆ–è€…åœ¨ç¢°æ’æ—¶é—´çš„æ—¶å€™æ‹¿å‡ºå¯¹åº”çš„monoä¹Ÿå¯ä»¥; 
     public void SetPlayerTarget(PlayerController playerController)
     {
-        controller.SetTarget(playerController);
+        Debug.Log("playerController :" + playerController);
+        enemyController.SetTarget(playerController);
     }
 }
